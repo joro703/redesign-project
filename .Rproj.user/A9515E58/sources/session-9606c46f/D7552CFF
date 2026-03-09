@@ -3,7 +3,7 @@
     "path": "C:/Users/joann_skaa7lq/OneDrive/Desktop/redesign-project/about.qmd",
     "project_path": "about.qmd",
     "type": "quarto_markdown",
-    "hash": "0",
+    "hash": "2522999482",
     "contents": "",
     "dirty": false,
     "created": 1773092097198.0,
@@ -16,14 +16,16 @@
         "Source": "Source",
         "docOutlineVisible": "1",
         "rmdVisualCollapsedChunks": "",
-        "rmdVisualModeLocation": "24:0"
+        "rmdVisualModeLocation": "52:0",
+        "cursorPosition": "6,0",
+        "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1773092042,
+    "lastKnownWriteTime": 1773092580,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1773092042,
+    "last_content_update": 1773092580556,
     "read_only": false,
     "read_only_alternatives": []
 }
