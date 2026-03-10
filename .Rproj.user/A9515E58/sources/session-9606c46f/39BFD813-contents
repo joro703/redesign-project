@@ -3,12 +3,15 @@ project:
   output-dir: docs
 
 website:
-  title: "redesign-project"
+  title: "Redesign Project"
   navbar:
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
+      - Original graphic.qmd
+      - Redesigns.qmd
+      - R Code.qmd
+      - About me.qmd
 
 format:
   html:

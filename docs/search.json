@@ -1,16 +1,37 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "redesign-project",
+    "objectID": "Redesigns.html",
+    "href": "Redesigns.html",
+    "title": "Redesigns",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2"
+    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n{r} 1 + 1"
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
+    "objectID": "Original graphic.html",
+    "href": "Original graphic.html",
+    "title": "Original graphic",
     "section": "",
-    "text": "About this site\n\n1 + 2\n\n[1] 3"
+    "text": "2023 GHG Emissions by Scoping Plan Sub-Category California Air Resources Board (2026)\n\n\nCARB’s AB 32 Climate Change Scoping Plan outlines a path for the state to reduce anthropogenic greenhouse gas (GHG) emissions by 85% below 1990 levels and achieve carbon neutrality by the year 2045. As part of this initiative, the California GHG Inventory compiles data related to statewide GHG emissions from anthropogenic sources.\nThe Scoping Plan categorizes emissions sources into seven different sectors, then divides these sectors into subcategories to further specify the source. The graphic above displays the GHG contributions made by each of these categories and subcategories.\nLimitations of the graphic and areas for improvement:\nDonut and pie charts overall are poor choices for data visualization due to the general difficulty people have in assessing and comparing angles and arclengths. In order to obtain useful information about the data in these types of graphics, one needs to read the labels and percentages, which defeats the purpose of having a visualization altogether. This issue is especially prominent among segments of similar sizes and becomes more pronounced as the number of segments increases. Not only this, but the circular nature of the information displayed makes the visualization inherently overwhelming, as there is no start or end point or clear direction for one’s eyes to follow.\nSome noticeable issues specific to this graphic are:\n\nIt is difficult to get a precise idea of how much each sector contributed to California’s GHG emissions and how they compare to each other without reading the percentages.\nIt is even more difficult to compare subcategories, especially across sectors.\nThe nested circles depict the information in a misleading way since any given percentage of the outer circle has a greater area than the same percentage of the inner circle. For example, the subcategory “in-state generation” under Electricity appears to larger than the entire Commercial & Residential sector.\nOne of the sectors is not labeled.\n\n\n\n\n\nReferences\n\nCalifornia Air Resources Board. (2026). GHG emission inventory graphs. https://ww2.arb.ca.gov/ghg-inventory-graphs"
+  },
+  {
+    "objectID": "About me.html",
+    "href": "About me.html",
+    "title": "About me",
+    "section": "",
+    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n{r} 1 + 1"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Redesign Project",
+    "section": "",
+    "text": "In this project, I take a data visualization published on the California Air Resource Board (CARB)’s website and attempt to improve upon it with three redesigns.\n*video"
+  },
+  {
+    "objectID": "R Code.html",
+    "href": "R Code.html",
+    "title": "R Code",
+    "section": "",
+    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n{r} 1 + 1"
   }
 ]

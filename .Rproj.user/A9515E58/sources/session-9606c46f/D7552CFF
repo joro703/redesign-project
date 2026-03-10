@@ -1,9 +1,9 @@
 {
     "id": "D7552CFF",
-    "path": "C:/Users/joann_skaa7lq/OneDrive/Desktop/redesign-project/about.qmd",
-    "project_path": "about.qmd",
+    "path": "C:/Users/joann_skaa7lq/OneDrive/Desktop/redesign-project/Original graphic.qmd",
+    "project_path": "Original graphic.qmd",
     "type": "quarto_markdown",
-    "hash": "2522999482",
+    "hash": "0",
     "contents": "",
     "dirty": false,
     "created": 1773092097198.0,
@@ -16,16 +16,17 @@
         "Source": "Source",
         "docOutlineVisible": "1",
         "rmdVisualCollapsedChunks": "",
-        "rmdVisualModeLocation": "52:0",
-        "cursorPosition": "6,0",
-        "scrollLine": "0"
+        "rmdVisualModeLocation": "2137:944.6666870117188",
+        "cursorPosition": "0,0",
+        "scrollLine": "0",
+        "docOutlineSize": "110"
     },
     "folds": "",
-    "lastKnownWriteTime": 1773092580,
+    "lastKnownWriteTime": 1773104576,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1773092580556,
+    "last_content_update": 1773104576163,
     "read_only": false,
     "read_only_alternatives": []
 }

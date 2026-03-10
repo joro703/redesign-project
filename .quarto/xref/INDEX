@@ -4,5 +4,17 @@
   },
   "index.qmd": {
     "index.html": "6c4e3924"
+  },
+  "About me.qmd": {
+    "About me.html": "447f300c"
+  },
+  "Original graphic.qmd": {
+    "Original graphic.html": "554a015a"
+  },
+  "R Code.qmd": {
+    "R Code.html": "bbdf6cb0"
+  },
+  "Redesigns.qmd": {
+    "Redesigns.html": "dabe5b94"
   }
 }

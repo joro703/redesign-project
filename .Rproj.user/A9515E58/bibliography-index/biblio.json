@@ -1,0 +1,32 @@
+{
+    "sources": [
+        {
+            "URL": "https://ww2.arb.ca.gov/ghg-inventory-graphs",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2026,
+                        3,
+                        9
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "literal": "California Air Resources Board"
+                }
+            ],
+            "id": "carb-ghg-graphs",
+            "issued": {
+                "date-parts": [
+                    [
+                        2026
+                    ]
+                ]
+            },
+            "title": "GHG emission inventory graphs",
+            "type": "webpage"
+        }
+    ],
+    "project_biblios": []
+}
