@@ -1,12 +1,5 @@
 [
   {
-    "objectID": "Redesigns.html",
-    "href": "Redesigns.html",
-    "title": "Redesigns",
-    "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n{r} 1 + 1"
-  },
-  {
     "objectID": "Original graphic.html",
     "href": "Original graphic.html",
     "title": "Original graphic",
@@ -18,7 +11,7 @@
     "href": "About me.html",
     "title": "About me",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n{r} 1 + 1"
+    "text": "My name is Joanna Ro. I am graduate student in the math department at GMU."
   },
   {
     "objectID": "index.html",
