@@ -1,0 +1,58 @@
+[
+  {
+    "objectID": "Redesigns.html",
+    "href": "Redesigns.html",
+    "title": "Redesigns",
+    "section": "",
+    "text": "Redesign #1\n\nThis is a horizontal bar graph of GHG emissions by Scoping Plan subcategory, organized in order of percent contribution and color-coded by sector.\nThis redesign organizes the information on the original graphic in a way that is more useful makes comparisons between subcategories easier and presents the information in a more visually organized manner than the original graphic. It is immediately clear when looking at this graph what the largest and smallest sources of emissions are and how the other subcategories rank between them. This design also allows better comparisons between sectors. For example, it is easy to see that “Passenger Vehicles,” a subcategory of Transportation, accounts for the highest percentage of emissions, followed by “In-State Generation,” a subcategory of Electricity. This information gives insight into the most efficient allocation of resources to reduce GHG emissions.\n\n\nRedesign #2\n\nThis is a stacked bar plot of GHG emissions by each of the sectors outlined in the Scoping Plan. Each bar is segmented into the subcategories of that sector and stacked in order of percent.\nThis side-by-side presentation of the sectors and subcategories makes the data easier to interpret and compare than the original circular design. It is clear how each of the sectors compare to one another in their GHG productions, and one can also glean more information about the impact each of the subcategories has on total emissions. For example, it is immediately apparent from this visualization that “Passenger Vehicles” alone, one subcategory of Transportation, produces more GHG emissions than the entirety of any other sector, and even more than some of the sectors combined. This kind of information is critical in determining the best sources to target in efforts to reduce GHG emissions.\n\n\nRedesign #3\n\nThis is a treemap which segments a rectangle first by sector and then further by subcategory. The sizes of these nested rectangles are proportional to the percentage of GHG emissions produced by that sector/subcategory.\nSimilarly to the original graphic, each sector is broken down into its subcategories, color-coded, and kept together as a unit. However, the rectangular box design as opposed to the circular donut design presents the data in a less overwhelming manner since all the information appears on a single “sheet” rather than requiring one’s eyes to go around in circles. Moreover, differences in areas of rectangles are more discernable than differences in arclengths of donut pieces, making comparisons between and across sectors easier.\n\n\nPossible next steps:\nA line plot showing how emissions from each sector or some of the larger subcategories have changed over time"
+  },
+  {
+    "objectID": "Original graphic.html",
+    "href": "Original graphic.html",
+    "title": "Original graphic",
+    "section": "",
+    "text": "2023 GHG Emissions by Scoping Plan Sub-Category California Air Resources Board (2026)\n\n\nCARB’s AB 32 Climate Change Scoping Plan outlines a path for the state to reduce anthropogenic greenhouse gas (GHG) emissions by 85% below 1990 levels and achieve carbon neutrality by the year 2045. As part of this initiative, the California GHG Inventory compiles data related to statewide GHG emissions from anthropogenic sources.\nThe Scoping Plan categorizes emissions sources into seven different sectors, then divides these sectors into subcategories to further specify the source. The graphic above displays the GHG contributions made by each of these categories and subcategories.\nLimitations of the graphic and areas for improvement:\nDonut and pie charts overall are poor choices for data visualization due to the general difficulty people have in assessing and comparing angles and arclengths. In order to obtain useful information about the data in these types of graphics, one needs to read the labels and percentages, which defeats the purpose of having a visualization altogether. This issue is especially prominent among segments of similar sizes and becomes more pronounced as the number of segments increases. Not only this, but the circular nature of the information displayed makes the visualization inherently overwhelming, as there is no start or end point or clear direction for one’s eyes to follow.\nSome noticeable issues specific to this graphic are:\n\nIt is difficult to get a precise idea of how much each sector contributed to California’s GHG emissions and how they compare to each other without reading the percentages.\nIt is even more difficult to compare subcategories, especially across sectors.\nThe nested circles depict the information in a misleading way since any given percentage of the outer circle has a greater area than the same percentage of the inner circle. For example, the subcategory “in-state generation” under Electricity appears to larger than the entire Commercial & Residential sector.\nOne of the sectors is not labeled.\n\n\n\n\n\nReferences\n\nCalifornia Air Resources Board. (2026). GHG emission inventory graphs. https://ww2.arb.ca.gov/ghg-inventory-graphs"
+  },
+  {
+    "objectID": "About me.html",
+    "href": "About me.html",
+    "title": "About me",
+    "section": "",
+    "text": "My name is Joanna Ro. I am graduate student in the math department at GMU."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Redesign Project",
+    "section": "",
+    "text": "In this project, I take a data visualization published on the California Air Resource Board (CARB)’s website and attempt to improve upon it with three redesigns.\n*video"
+  },
+  {
+    "objectID": "R Code.html",
+    "href": "R Code.html",
+    "title": "R Code",
+    "section": "",
+    "text": "library(readxl)\nlibrary(tidyverse)\nlibrary(treemapify)\n\nemissions = read_excel(\"Midterm Project/Emissions Data.xlsx\")"
+  },
+  {
+    "objectID": "R Code.html#horizontal-bar-graph",
+    "href": "R Code.html#horizontal-bar-graph",
+    "title": "R Code",
+    "section": "Horizontal bar graph",
+    "text": "Horizontal bar graph\n\nemissions = emissions %&gt;%\n  arrange(desc(-Percent)) %&gt;%\n  #create unique labels since some sectors have the same subcategories\n  mutate(x_lab = paste(Sector, Subcategory, sep = \" — \"),\n         x_lab = factor(x_lab, levels = x_lab)) \n\nggplot(emissions, aes(x=x_lab, y=Percent, fill=Sector)) +\n  geom_col() +\n  scale_y_continuous(limits = c(0,29)) +\n  scale_x_discrete(labels=emissions$Subcategory) +\n  geom_text(\n    aes(label = paste0(Percent, \"%\")),\n    hjust = -0.1,\n    size = 3\n  ) +\n  labs(x = \"Subcategory\",\n       title = \"GHG Emissions by Scoping Plan Subcategory\") +\n  theme(plot.title = element_text(size = 14, face = \"bold\")) +\n  coord_flip()"
+  },
+  {
+    "objectID": "R Code.html#stacked-bar-graph",
+    "href": "R Code.html#stacked-bar-graph",
+    "title": "R Code",
+    "section": "Stacked bar graph",
+    "text": "Stacked bar graph\n\nemissions = emissions %&gt;%\n  group_by(Sector) %&gt;%\n  arrange(desc(Percent), .by_group = TRUE) %&gt;%\n  mutate(\n    stack_id = row_number(),\n    y_mid = cumsum(Percent) - Percent/2,\n    label = paste0(Subcategory, \" (\", Percent, \"%)\")\n    ) %&gt;%\n  ungroup()\n\nggplot(emissions, aes(x=Sector, y=Percent, fill=Subcategory, order=stack_id)) +\n  geom_col(color=\"black\", fill=\"lightskyblue1\") +\n  geom_text(\n    data = emissions %&gt;% filter(!(Sector==\"Transportation\" & \n                                    Subcategory %in% c(\"Rail\", \"Unspecified\"))),\n    aes(y = y_mid, label = label),\n    size = 3) +\n  geom_text(\n    data = emissions %&gt;% filter(Sector == \"Transportation\", Subcategory==\"Unspecified\"),\n    aes(y = y_mid, label = label),\n    nudge_y = 0.5,\n    nudge_x = -0.5,\n    hjust = 1,\n    size = 3) +\n  geom_text(\n    data = emissions %&gt;% filter(Sector == \"Transportation\", Subcategory==\"Rail\"),\n    aes(y = y_mid, label = label),\n    nudge_x = -0.5,\n    hjust = 1,\n    size = 3) +\n  labs(title = \"GHG Emissions by Scoping Plan Sector\") +\n  theme(plot.title = element_text(size = 14, face = \"bold\"))"
+  },
+  {
+    "objectID": "R Code.html#treemap",
+    "href": "R Code.html#treemap",
+    "title": "R Code",
+    "section": "Treemap",
+    "text": "Treemap\n\nggplot(emissions,\n       aes(area = Percent, fill = Sector, subgroup = Sector,\n           label = case_when(\n             Sector %in% c(\"Transportation\", \"High GWP\") & Subcategory %in% c(\"Rail\", \"Unspecified\", \"Other\") ~\n               paste0(Subcategory, \" \", Percent, \"%\"),\n             TRUE ~ paste0(Subcategory, \"\\n\", Percent, \"%\")))) +\n  geom_treemap(color = \"gray95\") +\n  geom_treemap_subgroup_border() +\n  geom_treemap_text(colour = \"white\", place = \"center\", reflow = TRUE, min.size = 0) +\n  theme(legend.position = \"bottom\") +\n  labs(title = \"GHG Emissions by Scoping Plan Sector and Subcategory\") +\n  theme(plot.title = element_text(size = 14, face = \"bold\"))"
+  }
+]

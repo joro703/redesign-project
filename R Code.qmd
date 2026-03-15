@@ -74,7 +74,7 @@ ggplot(emissions, aes(x=Sector, y=Percent, fill=Subcategory, order=stack_id)) +
 
 ## Treemap
 
-```{r}
+```{r, eval=FALSE}
 ggplot(emissions,
        aes(area = Percent, fill = Sector, subgroup = Sector,
            label = case_when(
