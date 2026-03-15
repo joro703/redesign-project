@@ -2,8 +2,89 @@
 title: "R Code"
 ---
 
-This is a Quarto website.
+```{r, eval=FALSE}
 
-To learn more about Quarto websites visit https://quarto.org/docs/websites.
+library(readxl)
+library(tidyverse)
+library(treemapify)
 
-{r} 1 + 1
+emissions = read_excel("Midterm Project/Emissions Data.xlsx")
+```
+
+## Horizontal bar graph
+
+```{r, eval=FALSE}
+emissions = emissions %>%
+  arrange(desc(-Percent)) %>%
+  #create unique labels since some sectors have the same subcategories
+  mutate(x_lab = paste(Sector, Subcategory, sep = " — "),
+         x_lab = factor(x_lab, levels = x_lab)) 
+
+ggplot(emissions, aes(x=x_lab, y=Percent, fill=Sector)) +
+  geom_col() +
+  scale_y_continuous(limits = c(0,29)) +
+  scale_x_discrete(labels=emissions$Subcategory) +
+  geom_text(
+    aes(label = paste0(Percent, "%")),
+    hjust = -0.1,
+    size = 3
+  ) +
+  labs(x = "Subcategory",
+       title = "GHG Emissions by Scoping Plan Subcategory") +
+  theme(plot.title = element_text(size = 14, face = "bold")) +
+  coord_flip()
+```
+
+## Stacked bar graph
+
+```{r, eval=FALSE}
+emissions = emissions %>%
+  group_by(Sector) %>%
+  arrange(desc(Percent), .by_group = TRUE) %>%
+  mutate(
+    stack_id = row_number(),
+    y_mid = cumsum(Percent) - Percent/2,
+    label = paste0(Subcategory, " (", Percent, "%)")
+    ) %>%
+  ungroup()
+
+ggplot(emissions, aes(x=Sector, y=Percent, fill=Subcategory, order=stack_id)) +
+  geom_col(color="black", fill="lightskyblue1") +
+  geom_text(
+    data = emissions %>% filter(!(Sector=="Transportation" & 
+                                    Subcategory %in% c("Rail", "Unspecified"))),
+    aes(y = y_mid, label = label),
+    size = 3) +
+  geom_text(
+    data = emissions %>% filter(Sector == "Transportation", Subcategory=="Unspecified"),
+    aes(y = y_mid, label = label),
+    nudge_y = 0.5,
+    nudge_x = -0.5,
+    hjust = 1,
+    size = 3) +
+  geom_text(
+    data = emissions %>% filter(Sector == "Transportation", Subcategory=="Rail"),
+    aes(y = y_mid, label = label),
+    nudge_x = -0.5,
+    hjust = 1,
+    size = 3) +
+  labs(title = "GHG Emissions by Scoping Plan Sector") +
+  theme(plot.title = element_text(size = 14, face = "bold"))
+```
+
+## Treemap
+
+```{r}
+ggplot(emissions,
+       aes(area = Percent, fill = Sector, subgroup = Sector,
+           label = case_when(
+             Sector %in% c("Transportation", "High GWP") & Subcategory %in% c("Rail", "Unspecified", "Other") ~
+               paste0(Subcategory, " ", Percent, "%"),
+             TRUE ~ paste0(Subcategory, "\n", Percent, "%")))) +
+  geom_treemap(color = "gray95") +
+  geom_treemap_subgroup_border() +
+  geom_treemap_text(colour = "white", place = "center", reflow = TRUE, min.size = 0) +
+  theme(legend.position = "bottom") +
+  labs(title = "GHG Emissions by Scoping Plan Sector and Subcategory") +
+  theme(plot.title = element_text(size = 14, face = "bold"))
+```
